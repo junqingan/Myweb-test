@@ -4,7 +4,7 @@ var sliderConfig = {
     mainCell: ".focus",
     autoPlay: true,
     effect: "fade",
-    interTime: '3000',
+    interTime: '3500',
 };
 
 function start() {
@@ -14,6 +14,7 @@ function start() {
         }
     });
 }
+
 function init() {
     start();
 }
