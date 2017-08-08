@@ -1,14 +1,9 @@
 function start() {
 	$(".nav-list li").click(function(e) {
-		if ($(this).hasClass('slider')) {
-			return;
-		}
 		var whatTab = $(this).index();
 		var howFar = 142.8 * whatTab;
 
-		$(".slider").css({
-			left: howFar + "px"
-		});
+
 		$(".ripple").remove();
 		var posX = $(this).offset().left,
 			posY = $(this).offset().top,
@@ -32,7 +27,7 @@ function start() {
 			left: x + 'px'
 		}).addClass("rippleEffect");
 	});
-};
+}
 function init() {
     start();
 }

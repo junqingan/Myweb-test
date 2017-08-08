@@ -38,7 +38,7 @@ var config = {
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
-    devtool: process.env.NODE_ENV == 'production' ? false : "cheap-source-map",
+    // devtool: process.env.NODE_ENV == 'production' ? false : "cheap-source-map",
     //
     module: {
         rules: [{
@@ -77,7 +77,7 @@ var config = {
             entryOnly: true
         }),
         new ExtractTextPlugin({
-            filename: "./css/main.css",
+            filename: "./css/[name].css",
             allChunks: true
         }),
         new webpack.DefinePlugin({

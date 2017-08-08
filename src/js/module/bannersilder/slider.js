@@ -3,9 +3,8 @@ require("../../utils/SuperSlide.js");
 var sliderConfig = {
     mainCell: ".focus",
     autoPlay: true,
-    effect: "fold",
+    effect: "fade",
     interTime: '3000',
-    easing:"easeInQuint", 
 };
 
 function start() {
