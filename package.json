@@ -45,9 +45,9 @@
         "underscore": "^1.8.3"
     },
     "scripts": {
-        "test": "npm run clearpkg && webpack --colors --profile",
-        "watch": "npm run clearpkg && webpack -w --colors --profile",
-        "execute": "npm run clearpkg && cross-env NODE_ENV=production webpack --colors --profile"
+        "test": "webpack --colors --profile",
+        "watch": "webpack -w --colors --profile",
+        "execute": "cross-env NODE_ENV=production webpack --colors --profile"
     },
     "author": "anxiaosi",
     "license": "ISC"
