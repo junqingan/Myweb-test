@@ -9,30 +9,38 @@
     .bd {
         overflow: hidden;
         .ul {
-            width: 1200px;
+            width: 990px;
             margin: 50px auto 0;
             display: flex;
-            flex-wrap: wrap ;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items:center;
+            align-items: center;
             li {
-                padding:10px 20px;
+                padding: 10px 20px;
                 margin: 10px 10px 60px;
                 text-align: center;
                 border: 1px solid #ccc;
-                a{
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    color: #333;
-                   
+                cursor: pointer;
+                &:hover {
+                    background: #ff6400;
+                    color: #fafafa;
                 }
-                 &:hover{
-                        background: #ff6400;
-                       a{
-                            color: #fafafa;
-                       }
-                }
+            }
+        }
+        .jmrx {
+            display: block;
+            width: 180px;
+            height: 60px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #000;
+            text-align: center;
+            color: #333;
+            line-height: 60px;
+            border-radius: 3px;
+            &:hover {
+                color: #2f9eaf;
+                border: 1px solid #2f9eaf;
             }
         }
     }
