@@ -11,6 +11,7 @@
         display: none
     }
 }
+
 @keyframes show {
     0% {
         opacity: 0;
@@ -23,10 +24,12 @@
         opacity: 1;
     }
 }
+
 .hide {
     animation: 500ms linear hide;
     -webkit-animation: 500ms linear hide;
 }
+
 .show {
     animation: 500ms linear show;
     -webkit-animation: 500ms linear show;
@@ -36,17 +39,54 @@
     -webkit-animation: rippleDrop .4s linear;
     animation: rippleDrop .4s linear;
 }
+
 @-webkit-keyframes rippleDrop {
     100% {
         -webkit-transform: scale(2);
         transform: scale(2);
-       opacity: 0;
+        opacity: 0;
     }
 }
+
 @keyframes rippleDrop {
     100% {
         -webkit-transform: scale(2);
         transform: scale(2);
-       opacity: 0;
+        opacity: 0;
+    }
+}
+
+.mark_quickplay {
+    -webkit-animation: ft_tinyapp_pop .3s 0s ease-out forwards;
+    animation: ft_tinyapp_pop .3s 0s ease-out forwards;
+}
+
+@-webkit-keyframes ft_tinyapp_pop {
+    0% {
+        opacity: .5;
+        -webkit-transform: scale(.5)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale(1.1)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes ft_tinyapp_pop {
+    0% {
+        opacity: .5;
+        transform: scale(.5)
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1)
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1)
     }
 }
