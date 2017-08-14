@@ -1,4 +1,5 @@
 /**
+ * @file 返回顶部
  * @author [pelexiang]
  * @email [pelexiang@pptv.com]
  * @create date 2017-08-08 09:58:25
@@ -7,16 +8,18 @@
  */
 
 
-var GotoTop = function () {
+var GotoTop = function() {
     this.onTop = $.Callbacks();
     this.options = {
-        time: 1200, //跳回速度
-        divContainerId: "" //div容器
+        time: 1200,
+        // 跳回速度
+        divContainerId: ""
+            // div容器
     }
 }
 
 GotoTop.prototype = {
-    init: function (opt) {
+    init: function(opt) {
         var opt = $.extend(this.options, opt);
         var self = this,
             doc = document,
@@ -24,7 +27,7 @@ GotoTop.prototype = {
             divContainer = $(opt.divContainerId)[0],
             cRight = 10,
             cWidth = 134,
-            scrollTop = function (v) {
+            scrollTop = function(v) {
                 if (v === undefined) {
                     return document.body.scrollTop || document.documentElement.scrollTop;
                 } else {
@@ -33,18 +36,18 @@ GotoTop.prototype = {
                 }
             },
             WIDTH = 60;
-        var requestAnimFrame = (function () {
+        var requestAnimFrame = (function() {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function (callback, element) {
+                function(callback, element) {
                     window.setTimeout(callback, 1000 / 30);
                 };
         })();
 
-        var mine = function (t, b, c, d) {
+        var mine = function(t, b, c, d) {
             if (c > b) {
                 return (c - b) * t / d * t / d;
             } else {
@@ -76,9 +79,9 @@ GotoTop.prototype = {
             time = time || 800; // 默认0.8秒 
             var style = element.style,
                 start;
-            var setStyle = typeof css !== 'function' ? function (v) {
+            var setStyle = typeof css !== 'function' ? function(v) {
                 style[css] = v + 'px';
-            } : function (v) {
+            } : function(v) {
                 css(element, v);
             };
 
@@ -110,10 +113,10 @@ GotoTop.prototype = {
             style.position = 'fixed';
 
             var st = scrollTop();
-            animate(body, function (el, v) {
+            animate(body, function(el, v) {
                 scrollTop(v);
-            }, st, 0, opt.time, function () {
-                animate(divContainer, 'bottom', 10, document.documentElement.clientHeight, 1000, function () {
+            }, st, 0, opt.time, function() {
+                animate(divContainer, 'bottom', 10, document.documentElement.clientHeight, 1000, function() {
                     style.bottom = 10 + 'px';
                     style.display = 'none';
                     self.onTop.fire();
@@ -128,11 +131,11 @@ GotoTop.prototype = {
         //首页要求停留在
         var pageIswwwIndex = window.pageIswwwIndex || false;
         var footOffsetTop;
-        var maxTop = !pageIswwwIndex ? function () {
+        var maxTop = !pageIswwwIndex ? function() {
             return 999999
-        } : function () {
+        } : function() {
             footOffsetTop = footOffsetTop || $('body > div.wp-grid').offset().top;
-            setTimeout(function () {
+            setTimeout(function() {
                 footOffsetTop = null
             }, 500);
             return footOffsetTop;
@@ -142,32 +145,33 @@ GotoTop.prototype = {
 
         function onscroll() {
             clearTimeout(timeout1);
-            var divContainerStyle = function (w) {
+            var divContainerStyle = function(w) {
                 if (divContainer) {
                     if (maxTop() <= (doc.body.scrollTop || doc.documentElement.scrollTop) + doc.documentElement.clientHeight) {
                         style.display = 'block';
                         style.position = 'absolute';
-                        style.right = 10+'%';
+                        style.right = 10 + '%';
                         style.bottom = 'auto';
                     } else if ((doc.body.scrollTop || doc.documentElement.scrollTop) > doc.documentElement.clientHeight) {
                         style.display = 'block';
                         style.position = 'fixed';
                         style.bottom = 10 + 'px';
-                        style.right = 10+'%';
+                        style.left = 50 + '%';
+                        style.marginLeft = 580 + 'px';
                         style.top = 'auto';
                     } else {
                         style.display = 'none';
                     }
                 }
             }
-            timeout1 = setTimeout(function () {
+            timeout1 = setTimeout(function() {
                 divContainerStyle(doc.documentElement.clientWidth)
             }, 50);
         }
         onscroll();
         addEvent(window, 'scroll', onscroll);
     },
-    onTop: function (fn) {
+    onTop: function(fn) {
         self.onTop.add(fn);
     }
 }

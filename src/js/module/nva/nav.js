@@ -2,8 +2,7 @@ function start() {
 	$(".nav-list li").click(function(e) {
 		var whatTab = $(this).index();
 		var howFar = 142.8 * whatTab;
-
-
+		$(this).stop().addClass('on').siblings().removeClass('on');
 		$(".ripple").remove();
 		var posX = $(this).offset().left,
 			posY = $(this).offset().top,
