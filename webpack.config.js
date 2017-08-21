@@ -7,6 +7,7 @@ var UglifyJsParallelPlugin = require('webpack-uglify-parallel'); // 开启happyp
 var Es3ifyWebpackPlugin = require('es3ify-webpack-plugin'); //采用了多核并行压缩的方式来提升压缩速度
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var GlobalHandlerPrefix = '';
 
@@ -27,13 +28,14 @@ var setEntryObj = function(dir) {
     }(dir);
     return entryObj;
 }
+
 var config = {
     //文件入口配置
     entry: setEntryObj(getDir(pkg.src)),
     //文件输出配置
     output: {
         path: getDir(pkg.dist),
-        filename: '[name].js',
+        filename: './js/[name].js',
         library: GlobalHandlerPrefix + '[name]',
         libraryTarget: 'umd',
         umdNamedDefine: true
@@ -60,10 +62,10 @@ var config = {
     },
     plugins: [
         new CopyWebpackPlugin([{
-            ignore: ['*.html', '*.less', '*.md'],
+            ignore: ['*.less', '*.md'],
             copyUnmodified: true,
-            from: './src/css/',
-            to: '../dist/css/'
+            from: './src/',
+            to: '../dist/'
         }]),
         new Es3ifyWebpackPlugin(),
         new webpack.BannerPlugin({

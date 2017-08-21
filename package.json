@@ -23,11 +23,12 @@
         "url-loader": "^0.5.9"
     },
     "src": "./src/js/views",
-    "dist": "dist",
+    "dist": "./dist/",
     "dependencies": {
         "JSON": "^1.0.0",
         "babel-polyfill": "^6.23.0",
         "blueimp-md5": "^2.7.0",
+        "express": "^4.15.4",
         "gulp": "^3.9.1",
         "gulp-clean": "^0.3.2",
         "gulp-concat": "^2.6.1",
