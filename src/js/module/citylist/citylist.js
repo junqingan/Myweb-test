@@ -11,7 +11,7 @@ function start() {
         [121.4122, 31.2345, "地址：北京市东城区正义路甲5号"]
     ];
     var opts = {
-        width: 250, // 信息窗口宽度
+        width: 180, // 信息窗口宽度
         height: 80, // 信息窗口高度
         title: "信息窗口", // 信息窗口标题
         enableMessage: true //设置允许信息窗发送短息
