@@ -1,17 +1,121 @@
-.join-us{
+.join-us {
     width: 100%;
-    height: auto;  
-    border-top: 2px solid #FE5D5D; 
+    height: auto;
+    border-top: 2px solid #FE5D5D;
     padding-top: 20px;
-    .hd{
-        height: 60px;
+    .hd {
+        height: 50px;
         width: 1200px;
-        margin: 0 auto;
+        margin: 0 auto 40px;
         overflow: hidden;
         text-align: left;
-        h3{
-            color: #333;
-            font-size: 32px;
+        border-bottom: 2px solid #063589;
+        h3 {
+            width: 153px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 22px;
+            font-weight: normal;
+            font-style: italic;
+            cursor: pointer;
+            padding-left: 40px;
+            color: #fff;
+            background: url(http://staticsports.pplive.cn/old/css/v_20170324180844/modules/index_tit/bg1.png) no-repeat;
+            &:hover {
+                color: #000;
+            }
+        }
+    }
+    .bd {
+        width: 1200px;
+        height: auto;
+        margin: 0 auto;
+        .content {
+            width: 1100px;
+            overflow: hidden;
+            position: relative;
+            padding-left: 20px;
+            .con-tit {
+                line-height: 32px;
+                a {
+                    color: #0064A5;
+                    em {
+                        color: #F0842B;
+                        font-style: normal;
+                    }
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            } // 招聘列表
+            .zp_list {
+                margin-top: 20px;
+                margin-bottom: 40px;
+                .con_list {
+                    overflow: hidden;
+                    ul {
+                        li {
+                            float: left;
+                            width: 749px;
+                            border-bottom: 1px #dcdcdc solid;
+                            overflow: hidden;
+                            a {
+                                display: block;
+                                color: #0065a7;
+                                .c_left {
+                                    float: left;
+                                    width: 600px;
+                                    line-height: 55px;
+                                    padding-left: 15px;
+                                    background: url(http://static1.pplive.cn/cms/macrocms/201203/about/images/build/v_07311641/icon_left.jpg) no-repeat 5px center;
+                                }
+                            }
+                            .con_list_c {
+                                float: left;
+                                width: 749px;
+                                line-height: 24px;
+                                padding-bottom: 10px;
+                                color: #666;
+                                .list_sq {
+                                    float: left;
+                                    width: 749px;
+                                    text-align: right;
+                                    margin-top: 20px;
+                                    padding-bottom: 10px;
+                                    p {
+                                        float: right;
+                                        width: 46px;
+                                        height: 20px;
+                                        line-height: 20px;
+                                        background: url(http://static1.pplive.cn/cms/macrocms/201203/about/images/build/v_07311641/list_sq.jpg) NO-REPEAT;
+                                        text-align: right;
+                                        padding-right: 9px;
+                                        a {
+                                            display: block;
+                                            color: #0165a3;
+                                            font-size: 12px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .page_list {
+                    float: left;
+                    width: 100%;
+                    margin-top: 30px;
+                    margin-bottom: 40px;
+                    text-align: right;
+                    a {
+                        float: left;
+                        padding: 5px 10px;
+                        border: 1px solid #e5e5e5;
+                        color: #4fa1c9;
+                        margin-right: 5px;
+                    }
+                }
+            }
         }
     }
 }
