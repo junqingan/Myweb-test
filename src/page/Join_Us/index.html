@@ -92,7 +92,8 @@
                                     <li><a title="产品市场经理" onclick="openShutManager(this,'12',false);"><span class="c_left" style="cursor: pointer">产品市场经理</span></a>
                                         <span class="c_right"></span>
                                         <div class="con_list_c" id="12" style="display: none;"><strong>岗位职责&nbsp;</strong>&nbsp;<br> 1、 负责网络营销、推广方案创意、策划、执行；&nbsp;&nbsp;<br> 2、
-                                            负责网络的整体策划运营推广，积极与多方渠道平台合作；&nbsp;&nbsp;<br> 3、 调研收集用户体验，用户产品研发需求，提出产品研发需求规划和用户体验改进需求规划。&nbsp;&nbsp;<br>                                            4、 进行相关的产品宣传推广，包括管理以及进度的推进，建立良好市场运作体制；&nbsp;&nbsp;<br>
+                                            负责网络的整体策划运营推广，积极与多方渠道平台合作；&nbsp;&nbsp;
+                                            <br> 3、 调研收集用户体验，用户产品研发需求，提出产品研发需求规划和用户体验改进需求规划。&nbsp;&nbsp;<br> 4、 进行相关的产品宣传推广，包括管理以及进度的推进，建立良好市场运作体制；&nbsp;&nbsp;<br>
                                             <br>
                                             <strong>任职资格</strong><br> 1、本科以上学历&nbsp;&nbsp;
                                             <br> 2、3年以上市场工作经验&nbsp;&nbsp;
@@ -328,17 +329,7 @@
                                     </li>
                                 </ul>
                             </div>
-
-                            <div class="page_list nr_page">
-                                <div class="page">
-                                    <a style="display:none; float:right" 第<span="" id="a2">1</a>
-                                    <a style="cursor: pointer; float:right" onclick="change(++pageno)">下一页</a><span id="a3"
-                                        style="float:right"><span><a href="javascript:" onclick="change(1)" style="color:#FF0000">1</a></span>                                    </span>
-                                    <a style="cursor: pointer; float:right" onclick="change(--pageno)">上一页</a></div>
-                            </div>
                         </div>
-
-
                     </div>
 
                 </div>
@@ -397,55 +388,6 @@
                 }
             }
         }
-    </script>
-    <script>
-        var a = document.getElementById("all").getElementsByTagName("li");
-        var zz = new Array(a.length)
-        for (var i = 0; i < a.length; i++) {
-            zz[i] = a[i].innerHTML
-        } //div的字符串数组付给zz
-        var pageno = 1 //当前页
-        var pagesize = 100 //每页多少条信息
-        if (zz.length % pagesize == 0) {
-            var pageall = zz.length / pagesize
-        } else {
-            var pageall = parseInt(zz.length / pagesize) + 1
-        } //一共多少页  
-
-        function change(e) {
-            pageno = e;
-            if (e < 1) //如果输入页<1页
-            {
-                e = 1;
-                pageno = 1
-            } //就等于第1页 ， 当前页为1
-            if (e > pageall) //如果输入页大于最大页 
-            {
-                e = pageall;
-                pageno = pageall
-            } //输入页和当前页都=最大页
-            document.getElementById("all").innerHTML = "" //全部清空
-            for (var i = 0; i < pagesize; i++) {
-                var div = document.createElement("li") //建立div对象
-                div.innerHTML = zz[(e - 1) * pagesize + i] //建立显示元素
-                document.getElementById("all").appendChild(div) //加入all中  
-                if (zz[(e - 1) * pagesize + i + 1] == null) //超出范围跳出
-                    break
-            }
-            var ye = ""
-            for (var j = 1; j <= pageall; j++) {
-                if (e == j) {
-                    ye = ye + "<span><a href='javascript:' onClick='change(" + j + ")' style='color:#FF0000'>" + j +
-                        "</a></span> "
-                } else {
-                    ye = ye + "<a href='javascript:' onClick='change(" + j + ")'>" + j + "</a> "
-                }
-            }
-            document.getElementById("a1").innerHTML = pageall
-            document.getElementById("a2").innerHTML = pageno
-            document.getElementById("a3").innerHTML = ye
-        }
-        change(1)
     </script>
 </body>
 
