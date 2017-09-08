@@ -1,0 +1,31 @@
+[{
+        "did": 1,         
+        "name": "俏雅梅酒(小)",
+        "img_sm": "../css/assets/img/jiushui/01.gif"
+    },
+    {
+        "did": 2,         
+        "name": "菊正宗清酒",
+        "img_sm": "../css/assets/img/jiushui/02.gif"
+    },
+    {
+        "did": 3,         
+        "name": "青岛纯生啤酒",
+        "img_sm": "../css/assets/img/jiushui/03.gif"
+    },
+    {
+        "did": 4,         
+        "name": "小壶菊正宗清酒",
+        "img_sm": "../css/assets/img/jiushui/04.gif"
+    },
+    {
+        "did": 5,         
+        "name": "松竹梅清酒",
+        "img_sm": "../css/assets/img/jiushui/05.gif"
+    },
+    {
+        "did": 6,         
+        "name": "俏雅梅酒(大)",
+        "img_sm": "../css/assets/img/jiushui/06.gif"
+    }
+]

@@ -142,18 +142,21 @@
             width: 980px;
             height: auto;
             overflow: hidden;
+            position: relative;
             .con {
                 display: none;
+                &.current {
+                    display: block;
+                    transition: all .3s;
+                }
                 .listul {
+                    min-height: 600px;
                     overflow: hidden;
                     background: #41b884;
                     padding-top: 20px;
-                    display: flex;
-                    flex-flow: wrap;
-                    justify-content: center;
+                    padding-left: 10px;
                     li {
-                        width: 230px;
-                        height: 200px;
+                        float: left;
                         overflow: hidden;
                         background: #fff;
                         margin: 0 5px 0;
@@ -161,73 +164,103 @@
                         position: relative;
                         a {
                             display: block;
-                            width: 100%;
-                            height: 100%;
+                            width: 230px;
+                            height: 200px;
                             .txt {
-                                width: 100%;
-                                height: 40px;
-                                line-height: 40px;
+                                font-size: 16px;
+                                height: 42px;
+                                line-height: 42px;
                                 text-align: center;
-                                color: #fff;
-                                background: rgba(0, 0, 0, 0.5);
+                                font-weight: bold;
+                                position: relative;
+                                z-index: 10;
+                                overflow: hidden;
+                                padding: 0;
+                                border-bottom: 2px solid;
+                                color: #41b884;
+                                background: #ffffff;
+                                -webkit-transition: all 0.3s;
+                                transition: all 0.3s;
+                                &:before {
+                                    content: '';
+                                    position: absolute;
+                                    z-index: -1;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: #41b884;
+                                    pointer-events: none;
+                                    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+                                    transition: transform 0.3s, opacity 0.3s;
+                                    -webkit-transform: translate3d(-150%, 0, 0) skewX(40deg);
+                                    transform: translate3d(-150%, 0, 0) skewX(40deg);
+                                }
                             }
                             .food_pic {
                                 display: block;
-                                width: 210px;
+                                width: 160px;
                                 height: 120px;
                                 position: absolute;
-                                top: 20%;
                                 left: 50%;
-                                margin-left: -105px;
+                                bottom: 10%;
+                                margin-left: -80px;
                                 transition: all .3s;
                             }
                             &:hover {
+                                .txt {
+                                    color: #fff;
+                                    border-bottom: 2px solid;
+                                    &:before {
+                                        opacity: .6;
+                                        -webkit-transform: translate3d(0, 0, 0) skewX(0deg);
+                                        transform: translate3d(0, 0, 0) skewX(0deg);
+                                    }
+                                }
                                 .food_pic {
-                                    transform: scale(1.1, 1.1);
+                                   transform: scale(1.3,1.3);
                                 }
                             }
                         }
                     }
                 }
-                .fydiv {
-                    width: 320px;
-                    text-align: center;
-                    height: 30px;
-                    margin: 0 auto;
-                    margin-top: 30px;
-                    .fenye {
-                        text-align: center;
-                        height: 30px;
-                        margin: 0 auto;
-                        li {
-                            float: left;
-                            border: 1px solid #6CBFB7;
-                            height: 26px;
-                            line-height: 26px;
-                            margin-right: 10px;
+                .holder {
+                    margin: 15px 0;
+                    float: right;
+                    a {
+                        font-size: 14px;
+                        cursor: pointer;
+                        margin: 0 5px;
+                        padding: 0 5px;
+                        color: #333;
+                        &.jp-previous {
+                            margin-right: 15px;
+                        }
+                        &:hover {
+                            background-color: #222;
+                            color: #fff;
+                        }
+                        &.jp-next {
+                            margin-left: 15px;
+                        }
+                        &.jp-current {
+                            color: #FF4242;
+                            font-weight: bold;
+                            cursor: default;
+                            background: none;
                             &:hover {
-                                background-color: #f1f1f1;
+                                cursor: default;
+                                background: none;
+                                color: #FF4242;
+                                font-weight: bold;
                             }
-                            a {
-                                text-decoration: none;
-                                color: #6CBFB7;
-                                padding: 0 10px;
-                                display: block;
-                            }
-                            .prev {
-                                width: 66px;
-                            }
-                            .next {
-                                width: 66px;
-                            }
-                            .numb {
-                                width: 26px;
-                            }
-                            .choose {
-                                border: 1px solid #357973!important;
-                            }
-                            .choose a {
-                                color: #357973!important;
+                        }
+                        &.jp-disabled {
+                            color: #bbb;
+                            &:hover {
+                                color: #bbb;
+                                cursor: default;
+                                background: none;
                             }
                         }
                     }
@@ -235,4 +268,27 @@
             }
         }
     }
+}
+
+.holder a.jp-current,
+a.jp-current:hover {
+    color: #FF4242;
+    font-weight: bold;
+}
+
+.holder a.jp-disabled,
+a.jp-disabled:hover {
+    color: #bbb;
+}
+
+.holder a.jp-current,
+a.jp-current:hover,
+.holder a.jp-disabled,
+a.jp-disabled:hover {
+    cursor: default;
+    background: none;
+}
+
+.holder span {
+    margin: 0 5px;
 }
