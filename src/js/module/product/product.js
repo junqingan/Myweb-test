@@ -7,12 +7,18 @@ function start() {
         $(this).addClass('on').siblings().removeClass('on');
 
         product_list.eq($(this).index()).stop().addClass('current').siblings().stop().removeClass('current');
+        var nosss = $(".current ul").text();
+        if (nosss == null || nosss.length == 0) {
+           
+            $(".current ul").addClass('no-list');
+        } else {
+
+        }
     });
 
 
     $(function () {
         $.getJSON("../../../json/pro-list.json", function (data) {
-            console.log(data);
             var cHtml = "";
             for (var i = 0; i < data.length; i++) {
                 cHtml +=
@@ -32,10 +38,9 @@ function start() {
             })
         })
     });
-        // 寿司单品渲染
+    // 寿司单品渲染
     $(function () {
         $.getJSON("../../../json/pro-shousilist.json", function (data) {
-            console.log(data);
             var cHtml = "";
             for (var i = 0; i < data.length; i++) {
                 cHtml +=
@@ -53,7 +58,6 @@ function start() {
     // 酒水列表渲染
     $(function () {
         $.getJSON("../../../json/pro-jiushui.json", function (data) {
-            console.log(data);
             var cHtml = "";
             for (var i = 0; i < data.length; i++) {
                 cHtml +=
