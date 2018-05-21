@@ -1,6 +1,3 @@
-/**
- * 
- */
 window.$ = require('jquery');
 require('../utils/SuperSlide.js');
 require('../utils/Flipster');

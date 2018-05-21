@@ -1,7 +1,8 @@
 var Nav = require("../module/nva/nav.js"),
     banner = require("../module/bannersilder/slider"),
-    goToTop = require("../module/gotop/gotop");
-    citylist = require("../module/citylist/citylist");
+    goToTop = require("../module/gotop/gotop"),
+    citylist = require("../module/citylist/citylist"),
+    product = require("../module/product/product");
 
 var Home = function() {
     this.options = {};
