@@ -1,194 +1,50 @@
-.module-citylist {
-    .hd {
+.module-citylist{
+    .hd{
         width: 1200px;
-        margin: 20px auto;
+        height: 80px;
+        margin: 20px auto ;
         overflow: hidden;
-        ul {
+        ul{
             display: flex;
-            flex-flow: wrap;
-            justify-content: left;
-            li {
-                width: 140px;
-                height: 40px;
-                margin: 10px;
-                line-height: 40px;
-                border: 1px solid #ccc;
-                .border-radius(3px);
-                a {
+            flex-wrap: nowrap;
+            justify-content: center;
+            li{
+                width: 80px;
+                height: 80px;
+                margin: 0 10px;
+                background: pink;
+               
+                a{
+                    position: relative;
                     display: inline-block;
                     width: 100%;
                     height: 100%;
                     text-align: center;
-                    color: #333;
-                    background: #fefaee;
-                    font-weight: 600;
-                    .border-radius(3px);
-                    &:hover {
-                        background: #F4BFBF;
-                        color: #ff6400;
-                    }
-                }
-                &.active {
-                    border: 1px solid #ff6400;
-                    a {
-                        color: #ff6400;
-                    }
+                    line-height: 80px;
+                    color: #000;
                 }
             }
         }
     }
-    .bd {
+
+    .bd{
         width: 1200px;
         margin: 0 auto 100px;
         overflow: hidden;
-        min-height: 600px;
-        position: relative;
-        .store-list {
-            width: 100%;
+        .store-list{
+            width: 300px;
             height: auto;
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            ul {
-                display: flex;
-                flex-flow: wrap;
-                justify-content: left;
-                li {
-                    width: 270px;
-                    height: 170px;
-                    margin: 10px 10px;
-                    position: relative;
-                    overflow: hidden;
-                    .border-radius(3px);
-                    .box-shadow(2px, 3px, 6px, #333);
-                    .txt {
-                        color: #D7D7D7;
-                        width: 100%;
-                        height: 40px;
-                        line-height: 40px;
-                        text-align: center;
-                        background: rgba(0, 0, 0, .3);
-                    }
-                    a {
-                        color: #FFFFFF;
-                        display: block;
-                        width: 100%;
-                        height: 100%;
-                        .content {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            width: 100%;
-                            top: auto;
-                            bottom: 0;
-                            padding: 15px;
-                            background: rgba(195, 65, 11, 0.80);
-                            opacity: 0;
-                            -webkit-transform: translateY(100%);
-                            -moz-transform: translateY(100%);
-                            -ms-transform: translateY(100%);
-                            transform: translateY(100%);
-                            -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
-                            -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-                            transition: transform 0.4s, opacity 0.1s 0.3s;
-                        }
-                        &:hover {
-                            .content {
-                                opacity: 1;
-                                -webkit-transform: translateY(0px);
-                                -moz-transform: translateY(0px);
-                                -ms-transform: translateY(0px);
-                                transform: translateY(0px);
-                                -webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
-                                -moz-transition: -moz-transform 0.4s, opacity 0.1s;
-                                transition: transform 0.4s, opacity 0.1s;
-                            }
-                        }
-                    }
-                }
-            }
-            &.beijing {
-                li {
-                    background: url(../../assets/city/beijing.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.shanghai {
-                li {
-                    background: url(../../assets/city/shanghai.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.nanjing {
-                li {
-                    background: url(../../assets/city/nanjing.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.hangzhou {
-                li {
-                    background: url(../../assets/city/hangzhou.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.suzhou {
-                li {
-                    background: url(../../assets/city/suzhou.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.wuxi {
-                li {
-                    background: url(../../assets/city/wuxi.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.zhenjiang {
-                li {
-                    background: url(../../assets/city/zhenjiang.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.chongqing {
-                li {
-                    background: url(../../assets/city/chongqing.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.wuhan {
-                li {
-                    background: url(../../assets/city/wuhan.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.xian {
-                li {
-                    background: url(../../assets/city/xian.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.guiyang {
-                li {
-                    background: url(../../assets/city/guiyang.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.xianyang {
-                li {
-                    background: url(../../assets/city/xianyang.jpg) no-repeat;
-                    background-size: 100% 100%;
-                }
-            }
-            &.huaian {
-                li {
-                    background: url(../../assets/city/huaian.jpg) no-repeat;
-                    background-size: 100% 100%;
+            float: left;
+            ul{
+                li{
+                    width: 400px;
+                    height: 100px;
+                    margin: 20px 0;
+                    border: 3px solid #ccc;
                 }
             }
         }
-        .mapinit {
+        .mapinit{
             float: right;
             width: 700px;
             height: 500px;
