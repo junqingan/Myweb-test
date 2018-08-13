@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-const port = '8081';
+const port = '80';
 
 
 app.use(express.static('dist'));
