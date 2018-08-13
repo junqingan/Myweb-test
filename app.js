@@ -41,6 +41,7 @@ app.get("/information", function(req, res) {
     res.sendfile('./dist/page/information/index.html');
 });
 
+
 app.listen(port, function() {
     console.log(`server on http://localhost:${port}`);
 })

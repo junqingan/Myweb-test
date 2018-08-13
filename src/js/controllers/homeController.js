@@ -1,7 +1,7 @@
 var Nav = require("../module/nva/nav.js"),
     banner = require("../module/bannersilder/slider"),
-    goToTop = require("../module/gotop/gotop"),
-    citylist = require("../module/citylist/citylist"),
+    goToTop = require("../module/gotop/gotop");
+    citylist = require("../module/citylist/citylist");
     product = require("../module/product/product");
 
 var Home = function() {
@@ -19,6 +19,7 @@ Home.prototype.init = function(options) {
     this.initbanner();
     this.initgoToTop();
     this.initcitylist();
+    this.initProduct();
 }
 
 /**
@@ -47,6 +48,12 @@ Home.prototype.initgoToTop = function() {
  */
 Home.prototype.initcitylist = function() {
     citylist.init();
+};
+/**
+ * 产品列表
+ */
+Home.prototype.initProduct = function() {
+    product.init();
 };
 
 var instance;
