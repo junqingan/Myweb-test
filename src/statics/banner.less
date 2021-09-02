@@ -1,0 +1,66 @@
+@import "var.less";
+#home_banner{
+	.swiper-container{
+		height:291px;
+		margin-left:180px;
+		width:810px;
+	  	margin-top: 1px;
+		.pagination{
+		    bottom: 4px;
+		    text-align: center;
+		    width: 100%;
+		    z-index: 20;
+		    margin:0;
+		    .swiper-pagination-switch{
+			    height: 18px;
+			    line-height: 18px;
+			    width: 18px;
+		    	background: #3e3e3e;
+			    border-radius: 50%;
+			    color: #fff;
+			    cursor: pointer;
+			    display: inline-block;
+			    margin: 0 2px;
+			    overflow: hidden;
+			    &.swiper-active-switch{
+					background: #b61b1f;
+			    }
+		    }
+		}
+		.slide-page{
+			display:none;
+			a{
+				background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+			    color: #fff;
+			    display: block;
+			    font-family: simsun;
+			    font-size: 22px;
+			    font-weight: 400;
+			    height: 62px;
+			    line-height: 62px;
+			    margin-top: -31px;
+			    position: absolute;
+			    text-align: center;
+			    top: 50%;
+			    width: 28px;
+			    &.slider-prev{
+			    	left:0;
+			    }
+			    &.slider-next{
+			    	right:0;
+			    }
+			}
+		}
+		&:hover{
+			.slide-page{
+				display:block;
+			}
+		}
+	}
+}
+
+.company-msg{
+	width:248px;
+	right:0;
+	top:0;
+}

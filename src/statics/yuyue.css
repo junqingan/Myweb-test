@@ -1,0 +1,130 @@
+.no_border {
+  border: none;
+  box-shadow: none;
+}
+.ml90 {
+  margin-left: 90px;
+}
+.yuyue-wrap .yuyue-con {
+  width: 570px;
+  margin: 135px auto 110px;
+}
+.yuyue-wrap .ruici-signup-input .signup-head .sign-step {
+  width: 178px;
+  height: 80px;
+}
+.yuyue-wrap .ruici-signup-input .signup-head .sign-step-before:before {
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+}
+.yuyue-wrap .ruici-signup-input .signup-head .sign-step.active:after {
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+}
+.yuyue-wrap .ruici-signup-input .signup-head .sign-step:after {
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+}
+.yuyue-wrap .ruici-signup-input .signup-head .sign-step h3 {
+  font-size: 16px;
+  position: absolute;
+  margin-left: 70px;
+  margin-top: 30px;
+  width: 160px;
+  z-index: 888;
+}
+.yuyue-wrap .ruici-signup-input .signup-head .signz2 h3 {
+  margin-left: 55px;
+}
+.yuyue-wrap .ruici-signup-input h3.yuyue-tit {
+  font-size: 18px;
+  text-align: center;
+}
+.yuyue-wrap .ruici-signup-input .pl210 {
+  padding-left: 210px;
+}
+.yuyue-wrap .ruici-signup-input .sign-content {
+  margin-left: auto;
+  margin-right: auto;
+}
+.yuyue-wrap .ruici-signup-input .sign-content .col-md-2 {
+  width: 90px;
+}
+.yuyue-wrap .ruici-signup-input .sign-content form .control-label {
+  color: #757575;
+}
+.yuyue-wrap .ruici-signup-input .sign-content .w-auto {
+  width: auto;
+  float: left;
+}
+.yuyue-wrap .ruici-signup-input .sign-content .w-auto span {
+  margin-left: 15px;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  padding: 2px 4px;
+}
+.yuyue-wrap .ruici-signup-input .sign-content .w360 {
+  width: 360px;
+  float: left;
+}
+.yuyue-wrap .ruici-signup-input .sign-content .w360 input[disabled] {
+  background: none;
+  cursor: default;
+  padding-top: 27px;
+}
+.yuyue-wrap .ruici-signup-input h3 {
+  color: #000000;
+  font-size: 18px;
+}
+.yuyue-wrap .ruici-signup-input .radio {
+  margin-left: 35px;
+  color: #757575;
+}
+.yuyue-wrap .ruici-signup-input .sign-map-wrap {
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+.yuyue-wrap .ruici-signup-input .sign-map-wrap .sign-map {
+  width: 290px;
+  height: 240px;
+  float: left;
+}
+.yuyue-wrap .ruici-signup-input .sign-map-wrap .sign-addr {
+  width: 435px;
+  height: 240px;
+  float: left;
+  margin-left: 15px;
+}
+.yuyue-wrap .ruici-signup-input .sign-map-wrap .sign-tip {
+  float: left;
+  width: 100%;
+  color: #ff0000;
+}
+.yuyue-wrap .ruici-signup-input .sign-success {
+  border: #a1a1a1 1px solid;
+  border-radius: 7px;
+  padding: 30px 15px;
+  width: 720px;
+  margin: 30px auto;
+}
+.yuyue-wrap .ruici-signup-input .sign-success .success-tip {
+  padding-left: 15px;
+  font-size: 24px;
+  line-height: 35px;
+}
+.yuyue-wrap .ruici-signup-input .success-btn {
+  width: 720px;
+  margin: 10px auto;
+}
+.yuyue-wrap .ruici-signup-input .success-btn a {
+  width: 213px;
+  background: #f39801;
+  color: #FFFFFF;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin-left: 13px;
+  margin-right: 11px;
+}
+.ff0000 {
+  color: #ff0000;
+}
