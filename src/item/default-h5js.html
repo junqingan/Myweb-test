@@ -1,0 +1,276 @@
+ 
+<textarea class="hide" id='related_tpl'>
+    <div class="goods-item">
+        <div class="card">
+            <div class="gi-image-wrapper">
+                <a href="{product.item_url}">
+                    <img data-original="{image}" alt="{name}">
+                </a>
+            </div>
+            <div class="caption">
+                <h5 class="g-name"><a href="{product.item_url}">{name}</a></h5>
+                <span class='btn btn-primary g-price'><small>￥</small>{product.buy_price}</span>
+            </div>
+        </div>
+    </div>
+</textarea>
+<script type="text/javascript" src="<{$base_url}>/index.php/openapi/goods/counter/goods_id/<{$data_detail.goods_id}>/view_count/1/uv.js"></script>
+<script charset="utf-8">
+    /*
+    * 商品详情页脚本
+    * @author vmcshop.com
+    * @version 1.150813
+    */
+    $(function(){
+        //延迟加载商品详情
+        var goods_desc_textarea = $('.goods-desc .content-desc textarea'),
+        goods_desc_textarea_val = $.trim(goods_desc_textarea.val()),
+        tmp_gdesc = $('<div></div>').append(goods_desc_textarea_val);
+        $.each(tmp_gdesc.find('img'),function(index,img){
+              var data_original = $(img).prop('src');
+              $(img).attr('data-original',data_original);
+              $(img).attr('src','data:image/gif;base64,R0lGODlhAQABAIAAAOzs7P///yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw==');
+        });
+        goods_desc_textarea.replaceWith(tmp_gdesc.html());
+        $('.gdesc-modal-handle').on('touchend',function(){
+            if($(this).data('lazyload'))return;
+            $(this).data('lazyload',true);
+            img_lazyload($('.goods-desc .content-desc'),{container:$('.goods-desc .content-desc').closest('.content')});
+        });
+        //模板填充工具
+        var substitute = function(str, obj) {
+            return str.replace(/\\?\{([^{}]+)\}/g, function(match, name) {
+                if (match.charAt(0) == '\\') return match.slice(1);
+                if(name.match(/\./)){
+                    value = eval('obj.'+name);
+                    return value?value:'';
+                }
+                return (obj[name] != undefined) ? obj[name] : '';
+            });
+        };
+        //倒计时
+        var remaining_time = function (intDiff,show_scope){
+            if(!show_scope)return;
+            setInterval((function(){
+                var day=0,
+                    hour=0,
+                    minute=0,
+                    second=0;//时间默认值
+                if(intDiff > 0){
+                    day = Math.floor(intDiff / (60 * 60 * 24));
+                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                }
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                show_scope.find('.day-show').html(""+day+"天");
+                show_scope.find('.hour-show').html('<s id="h"></s>'+hour+'时');
+                show_scope.find('.minute-show').html('<s></s>'+minute+'分');
+                show_scope.find('.second-show').html('<s></s>'+second+'秒 后结束');
+                intDiff--;
+                return arguments.callee;
+            })(), 1000);
+        };
+       //修改数量时，影响购买按钮数量参数
+        $(document).on('_change','.product-quantity .spinner-input',function(e,cur_val){
+            $.each($('.btn-buy'),function(i,a){
+                a.href = a.href.replace(/([\s\S]*?)-([\d]+?)-([\d]+?)\.html/,function(){
+                    var args = arguments;
+                    return [args[1],args[2],cur_val].join('-')+'.html'
+                });
+            });
+        }).trigger('_change',[$('.product-quantity .spinner-input').val(),0]);
+
+        /**商品 openapi 调用**/
+        var goods_id = "<{$data_detail.goods_id}>";
+
+        //商品促销
+        var goods_promotions_api = "<{$base_url}>/index.php/openapi/goods/promotion/goods_id/<{$data_detail.goods_id}>/price/<{$data_detail.product.buy_price}>";
+
+        $.getJSON(goods_promotions_api,function(recv){
+            var phtml = '';
+            if(recv.result == 'success' && recv.data){
+                $.each(recv.data.plist,function(idx,p){
+                    phtml+='<li data-ruleid="'+p.rule_id+'" data-remaining="'+(p.to_time-p.now)+'"><h4>促销:</h4><div class="fr"><span class="label label-danger">'+p.tag+'</span><span class="infro">'+p.description+'</span><span class="time-show"><span class="day-show"></span><span class="hour-show"></span><span class="minute-show"></span><span class="second-show"></span></span></div></li>';
+                });
+                $('.promotion-list').append(phtml);
+                $.each($('.promotion-list [data-remaining]'),function(idx,item){
+                    item = $(item);
+                    if(item.attr('data-remaining')>60*60*24*10){
+                        $(item.find('.time-show')).remove();
+                    }else{
+                        remaining_time(item.attr('data-remaining'),$(item.find('.time-show')));
+                    }
+                });
+                if(recv.data.sale_price && recv.data.sale_price!='null'){
+                    $('<del class="text-muted">￥'+$('.price-availability-block .price strong').text()+'</del>').insertBefore($('.price-availability-block .price'));
+                    $('.price-availability-block .price strong').text(recv.data.sale_price);
+                }
+            }
+            if(phtml == ''){
+                $('.goods-plist').remove();
+            }
+        });
+
+        //库存确认openAPI
+        <{if $data_detail.nostore_sell != '1'}>
+        var stock_confirm_api = "<{$base_url}>/index.php/openapi/stock/confirm/";
+        $.post(stock_confirm_api,{sku:'<{$data_detail.product.bn}>'},function(recv){
+            try{
+                data = recv.data;
+                if(!data || !data['<{$data_detail.product.bn}>'] || data['<{$data_detail.product.bn}>']['num']<1){
+                    //无法确认库存,或无库存
+                    //DO SOMETHING
+                    $('.btn-buy').addClass('disabled');
+                    $('<div class="no-goods"><span class="btn btn-link">库存不足!</span></div>')
+                    .insertBefore($('.promotion-method'));
+                }else{
+                    var stock_num = data['<{$data_detail.product.bn}>']['num'];
+                    //$('.product-quantity input').attr('data-maxbuy',stock_num);//TODO
+                }
+            }catch(e){
+                //console.error(e);
+            }
+
+        },'json');
+        <{/if}>
+        //相关商品openAPI
+        var related_api = "<{$base_url}>/index.php/openapi/goods/related/";
+        $.getJSON(related_api,{goods_id:goods_id},function(recv){
+            try{
+                var cloumns = $('#goods_related .column');
+                cloumns.css('width',100/cloumns.length+'%')
+                cloumns = cloumns.toArray();
+                $.each(recv.data,function(k,v){
+                    var loop_c = cloumns.shift();
+                    if(v.product.promotion.sale_price && v.product.promotion.sale_price!='null'){
+                        v.product.buy_price = v.product.promotion.sale_price;
+                    }
+                    $(loop_c).append(substitute($('#related_tpl').val(),v));
+                    cloumns.push(loop_c);
+                });
+
+                img_lazyload($(cloumns),{container:$('.content').eq(0),failure_limit:$('#goods_related .column').eq(0).find('img').length});
+            }catch(e){
+                //console.error(e);
+            }
+        });
+        //喜欢收藏openAPI
+        var favorite_button=$('.favorite-button');
+        var check_fav_api = "<{$base_url}>/index.php/openapi/goods/check_fav/";
+        function favorite_url(reverse){
+            return '<{$base_url}>/index.php/my-favorite-'+reverse+'-'+goods_id+'.html';
+        }
+        $.getJSON(check_fav_api,{member_id:$.cookie('MEMBER_IDENT'),'goods_id':goods_id},function(recv){
+            var data = recv.data;
+            try{
+                var data = recv.data;
+                if(data.is_fav && data.is_fav>0){
+                    favorite_button.data('fav','del').find('.fa').removeClass('fa-heart-o').addClass('fa-heart');
+                }
+                // $('.favorite-button em').text(' ('+data.fav_count+')');
+
+            }catch(e){
+
+            }
+        });
+        favorite_button.on('click',function(e){
+            var _this = $(this);
+            var goods_id = _this.attr('goods-id');
+            var reverse = _this.attr('data-fav');
+            if(goods_id<1 ){
+              return false;
+            }
+            var favorite_url = '<{$base_url}>/index.php/m/my-favorite-'+reverse+'-'+goods_id+'.html'
+              $.get(favorite_url,function(re){
+                if(re && re.success){
+                    if(reverse=='add'){
+                        favorite_button.attr('data-fav','del')
+                        .find('.fa').removeClass('fa-heart-o').addClass('fa-heart');
+                        Messagebox('success','收藏成功');
+                    }else{
+                        favorite_button.attr('data-fav','add')
+                        .find('.fa').removeClass('fa-heart').addClass('fa-heart-o');
+                        Messagebox('success','取消收藏成功');
+                    }
+                }else{
+                    Messagebox('error',re.error);
+                    if(re.redirect){
+                        location = re.redirect;
+                    }
+                }
+            },'json');
+            return false;
+        });
+
+        $('.btn-addtocart').on('click',function(e){
+            $.getJSON($(this).attr('href'),function(re){
+                if(re.success){
+                    //成功
+                    $('.cart-count').removeClass('hidden').text(re.data.goods_count);
+                    Messagebox('success_addtocart');
+                }else{
+                    //失败
+                    Messagebox('error');
+                }
+            });
+            return false;
+        });
+
+        //加载购物车内容数量
+        var load_cart_count = (function(){
+            $.getJSON('<{$base_url}>/index.php/openapi/cart/count',function(re){
+                try{
+                    if(re.data.quantity>0){
+                        $('.cart-count').removeClass('hidden').text(re.data.quantity);
+                    }
+                }catch(e){
+
+                }
+            });
+            arguments.callee;
+        })();
+
+        //相册lazyload
+
+        $('#pi_slider').on('slide',function(e){
+            img_lazyload($('#pi_slider'),{container:$('#pi_slider'),effect:'fadeIn',load:function(){
+                $(this).removeAttr('data-original');
+            }});
+        });
+        //样式略微调整
+        $('.bar-nav .title').text('商品介绍');
+        //加载浏览历史
+        $('#view_history').on('firstshow',function(e){
+            $.getJSON('<{$base_url}>/index.php/openapi/goods/history',function(recv){
+                try{
+                    var cloumns = $('#view_history .column');
+                    cloumns.css('width',100/cloumns.length+'%')
+                    cloumns = cloumns.toArray();
+                    $.each(recv.data,function(k,v){
+                        var loop_c = cloumns.shift();
+                        if(v.product.promotion.sale_price && v.product.promotion.sale_price!='null'){
+                            v.product.buy_price = v.product.promotion.sale_price;
+                        }
+                        $(loop_c).append(substitute($('#related_tpl').val(),v));
+                        cloumns.push(loop_c);
+                    });
+                    img_lazyload($(cloumns),{container:$('.content').eq(0),failure_limit:$('#view_history .column').eq(0).find('img').length});
+                }catch(e){
+                    //console.error(e);
+                }
+            });
+        });
+    });
+</script>
+<script>
+var list=document.getElementsByClassName("tb_box")[0]
+  //获取class对象
+  lis=list.getElementsByClassName("number")
+  //获取class子对象,是数组集合
+  for(var i=0,l=lis.length;i<l;i++){
+      lis[i].innerHTML=i+1
+  }
+</script>
+
